@@ -45,6 +45,7 @@ def digitalReader(Img):
     
 
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (1, 5))
+    
     cnts=cv2.findContours(warpedCut.copy(),cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
     cnts=im.grab_contours(cnts)
     remove=[]
@@ -83,6 +84,10 @@ def digitalReader(Img):
     w_max=55
     #print(digit)
     #print([x,y,w,h], len(digit))
+    #print(type(digit))
+    if len(digit)<4:
+        digit=digit+(digit[2],)
+
     origin=x
     #for d in digit:
     i=0
@@ -123,11 +128,11 @@ def digitalReader(Img):
                 t=cv2.countNonZero(sec)
                 #print(t)
                 A=(x2-x1)*(y2-y1)
-                if(t/A)>.5:
+                if(t/A)>.4:
                     light[e]=1
         digit=DIGITS_LOOKUP[tuple(light)]
         digits.append(digit)
-        #print(light)
+        print(light)
         #    sum=cv2.countNonZero(sec)
 
     #print(digits)
@@ -147,6 +152,8 @@ def sqFinder(Img):
     gray=cv2.cvtColor(Img, cv2.COLOR_BGR2GRAY)  #convert to blur
     blur=cv2.GaussianBlur(gray,(5,5),0)         #blur the image
     thresh=cv2.threshold(gray,127,255,cv2.THRESH_BINARY)[1] #if pixel does not meet threshold sets the value to zero
+    #kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (1, 5))
+    #warped = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel)
     edged=cv2.Canny(blur, 50, 200, 255)
     #this image provides enough contrast between the thermometer and backgroud that we can determine it from the other parts of the image
     
@@ -186,4 +193,7 @@ def main(path):
     digitalReader(digitalImg)
     return 0
 
-main('C:\\Users\\cftra\OneDrive\\Desktop\\ME_459\\FinalProject\\ME459FinalProject\\IMG_3681_4.JPEG')
+#main('C:\\Users\\cftra\OneDrive\\Desktop\\ME_459\\FinalProject\\ME459FinalProject\\IMG_3681_5.JPG')
+#main('C:\\Users\\cftra\OneDrive\\Desktop\\ME_459\\FinalProject\\ME459FinalProject\\IMG_3677_2.JPEG')
+#main('C:\\Users\\cftra\OneDrive\\Desktop\\ME_459\\FinalProject\\ME459FinalProject\\IMG_3673.JPEG')
+main('C:\\Users\\cftra\OneDrive\\Desktop\\ME_459\\FinalProject\\ME459FinalProject\\testing.JPEG')
