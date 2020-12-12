@@ -82,7 +82,7 @@ def digitalReader(Img):
     #w_max=w
     w_max=55
     #print(digit)
-    print([x,y,w,h], len(digit))
+    #print([x,y,w,h], len(digit))
     origin=x
     #for d in digit:
     i=0
@@ -127,11 +127,15 @@ def digitalReader(Img):
                     light[e]=1
         digit=DIGITS_LOOKUP[tuple(light)]
         digits.append(digit)
-        print(light)
+        #print(light)
         #    sum=cv2.countNonZero(sec)
 
-    print(digits)
-
+    #print(digits)
+    output=""
+    for d in digits:
+        output=output+str(d)
+    output=output[:-2]+"."+output[-2:]+'\N{DEGREE SIGN}'+'C'
+    print(output)
     cv2.imshow('Gauge', warped)
     cv2.imshow('Gauge Pic', clean)
     cv2.waitKey(0)
@@ -173,13 +177,13 @@ def sqFinder(Img):
 
     return val
 
-def main():
-    gaugeImg = cv2.imread('C:\\Users\\cftra\OneDrive\\Desktop\\ME_459\\Project\\IMG_3672.JPEG')
-    digitalImg = cv2.imread('C:\\Users\\cftra\OneDrive\\Desktop\\ME_459\\FinalProject\\ME459FinalProject\\testing.JPEG')
-    digitalImg=im.resize(digitalImg, width=2500)
+def main(path):
+    #gaugeImg = cv2.imread('C:\\Users\\cftra\OneDrive\\Desktop\\ME_459\\Project\\IMG_3672.JPEG')
+    digitalImg = cv2.imread(path)
+    #digitalImg=im.resize(digitalImg, width=2500)
     cv2.imshow('Gauge Picture3', digitalImg)
     cv2.waitKey(0)
     digitalReader(digitalImg)
     return 0
 
-main()
+main('C:\\Users\\cftra\OneDrive\\Desktop\\ME_459\\FinalProject\\ME459FinalProject\\IMG_3681_4.JPEG')
