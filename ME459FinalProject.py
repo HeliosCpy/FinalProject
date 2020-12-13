@@ -1,9 +1,10 @@
 #Code adapted from the Medium article (for the analog gauge) by Abhijeet Nayak at
 #https://medium.com/@nayak.abhijeet1/analogue-gauge-reader-using-computer-vision-62fbd6ec84cc
 
-#Code refered to from OpenCV2 python documentation and Adrian Rosebrock's Recognizing digits with OpenCV and Python
+#Code refered to from OpenCV2 python documentation, stack overflow, and Adrian Rosebrock's Recognizing digits with OpenCV and Python 
 #https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_gui/py_table_of_contents_gui/py_table_of_contents_gui.html
 #https://www.pyimagesearch.com/2017/02/13/recognizing-digits-with-opencv-and-python/
+#https://stackoverflow.com/questions/9413216/simple-digit-recognition-ocr-in-opencv-python --most heavily influential stack overflow article
 
 #Code developed for the UW-Madison MINLAB by Mark Vandenberg and Collin Trafton
 #Code submitted for ME459 Final Project, Fall 2020
